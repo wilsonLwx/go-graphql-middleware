@@ -1,9 +1,9 @@
 package main
 
 import(
+	"fmt"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
-	
 )
 
 var DB *sql.DB
@@ -19,19 +19,21 @@ func initDB() error {
 }
 
 type User struct{
-	Id int `db:"id`
-	Name string `db:"name"`
-	Age int `db:"age"`
+	Id 	  int     `db:"id"`
+	Name  string  `db:"name"`
+	Age   int     `db:"age"`
 }
 func testQueryData(){
 	sqlstr := "select id, name, age from user where id = ?"
-	row := DB.QueryRow(sqlstr, 2)
-	err := row.Scan(&User.Id, &User.Name, &User.Age)
+	row := DB.QueryRow(sqlstr, 1)
+
+	var user User
+	err := row.Scan(&user.Id, &user.Name, &user.Age)
 	if err != nil {
 		fmt.Printf("scan err:%v\n", err)
 		return
 	}
-	fmt.Printf("ID:%d, Name:%s, Age:%d\n",User.Id,User.Name,User.Age)
+	fmt.Printf("ID:%d, Name:%s, Age:%d\n",user.Id,user.Name,user.Age)
 }
 
 func main()  {
