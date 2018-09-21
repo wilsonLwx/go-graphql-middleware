@@ -47,8 +47,8 @@ func testFormat(){
 }
 func main(){
 	// testTime()
-	// timestamp := time.Now().Unix()
-	// testTimestamp(timestamp)
+	timestamp := time.Now().Unix()
+	testTimestamp(timestamp)
 	// testTicker()
-	testFormat()
+	// testFormat()
 }
